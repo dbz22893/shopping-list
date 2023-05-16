@@ -9,12 +9,14 @@
 
 <ul>
 <% it.shoppinglists.forEach((list) => { %>
-    <li>
-      <a href="/lists/<%= list.id %>"><span style="display: inline-block; width: 200px;"><%= list.name %></span>
-      <form style="display: inline-block;" method="POST" action="/lists/<%= list.id %>/deactivate">
-      <input type="submit" value="Deactivate list!" data-button-index="<%= list.id %>" />
-      </form>
-    </li>
+    <li style="display: flex;">
+  <a href="/lists/<%= list.id %>" style="text-decoration: underline; text-decoration-style: dotted; width: 100px;">
+    <%= list.name %>
+  </a>
+  <form style="margin-left: 10px;" method="POST" action="/lists/<%= list.id %>/deactivate">
+    <input type="submit" value="Deactivate list!" />
+  </form>
+</li>
     
   <% }); %>
 </ul>

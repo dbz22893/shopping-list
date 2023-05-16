@@ -1,0 +1,38 @@
+<% layout("./layouts/layout.eta") %>
+<h1><%= it.list.name %></h1>
+<form method="POST" action="/lists/<%= it.list.id %>/items">
+  Name: <input type="text" name="name" />
+  <input type="submit" value="Add new item!" />
+</form>
+
+<h2>Existing items</h2> 
+
+<ul>
+<% 
+    const MarkedItems = it.shoppingitems.filter((item) => item.collected);
+    const UnMarkedItems = it.shoppingitems.filter((item) => !item.collected);
+    const sortedMarkedItems = MarkedItems.sort((a, b) => a.name.localeCompare(b.name));
+    const sortedUnMarkedItems = UnMarkedItems.sort((a, b) => a.name.localeCompare(b.name));
+%>
+
+<% sortedUnMarkedItems.forEach((item) => { %>
+<li>
+<span style="display: inline-block; width: 200px;"><%= item.name %></span>
+<form style="display: inline-block;" method="POST" action="/lists/<%= it.list.id %>/items/<%= item.id %>/collect">
+      <input type="submit" value="Mark collected!" data-button-index="<%= item.id %>" />
+</form>
+</li>
+<% }); %>
+<% sortedMarkedItems.forEach((item) => { %>
+<li>
+  <span style="display: inline-block; width: 200px;"><del><%= item.name %></del></span>
+  <form style="display: inline-block;" method="POST" action="/lists/<%= it.list.id %>/items/<%= item.id %>/collect">
+      <input type="submit" value="Mark collected!" data-button-index="<%= item.id %>" />
+  </form> 
+</li>
+<% }); %>
+
+</ul>
+
+<h3><a href="/lists">Shopping lists</h3> 
+

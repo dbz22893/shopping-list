@@ -1,0 +1,20 @@
+<% layout("./layouts/layout.eta") %>
+
+<% if ( parseInt(it.numberofshoppinglists.count) === 0) { %>
+    <h1>No shopping lists yet.</h1>
+<% } else { %>
+    <h1>statistics</h1>
+    <h2 id="list-1">Shopping lists: <%= it.numberofshoppinglists.count %></h2>
+    <h2 id="list-2">Shopping list items: <%= it.numberofshoppinglistitems.count %></h2>
+<% } %>
+
+<h2 id="list-3"><a href="/lists"><%= it.Lists %></a></h2>
+
+
+
+
+
+
+
+
+

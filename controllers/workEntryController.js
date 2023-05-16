@@ -7,14 +7,7 @@ const responseDetails = {
     headers: { "Content-Type": "text/html;charset=UTF-8" },
 };
 
-const redirectTo = (path) => {
-    return new Response(`Redirecting to ${path}.`, {
-        status: 303,
-        headers: {
-            "Location": path,
-        },
-    });
-};
+
 
 const additem = async(request) => {
     const url = new URL(request.url);
@@ -22,10 +15,7 @@ const additem = async(request) => {
     const formData = await request.formData();
     const name = formData.get("name");
     await workEntryService.createitem(urlParts[2], name);
-    return redirectTo(`/lists/${urlParts[2]}`);
-    /*** 
     return requestUtils.redirectTo(`/lists/${urlParts[2]}`);
-    ***/
 };
 const viewitem = async(request) => {
     const url = new URL(request.url);
@@ -43,7 +33,7 @@ const deleteitem = async(request) => {
     const url = new URL(request.url);
     const urlParts = url.pathname.split("/");
     await workEntryService.deleteitem(urlParts[4]);
-    return redirectTo(`/lists/${urlParts[2]}`);
+    return requestUtils.redirectTo(`/lists/${urlParts[2]}`);
 };
 
 export { additem, viewitem, deleteitem };

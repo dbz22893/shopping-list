@@ -9,8 +9,14 @@
 
 <ul>
 <% it.shoppinglists.forEach((list) => { %>
-  <li><a href="/lists/<%= list.id %>"><%= list.name %></li>
-<% }); %>
+    <li>
+      <a href="/lists/<%= list.id %>"><span style="display: inline-block; width: 200px;"><%= list.name %></span>
+      <form style="display: inline-block;" method="POST" action="/lists/<%= list.id %>/deactivate">
+      <input type="submit" value="Deactivate list!" data-button-index="<%= list.id %>" />
+      </form>
+    </li>
+    
+  <% }); %>
 </ul>
 
 <h3><a href="/">Main page</h3> 

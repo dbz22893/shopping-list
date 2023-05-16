@@ -18,6 +18,8 @@ const handleRequest = async(request) => {
         return await taskController.addList(request);
     } else if (url.pathname === "/lists" && request.method === "GET") {
         return await taskController.viewLists(request);
+    } else if (url.pathname.match("/lists/[0-9]+/deactivate") && request.method === "POST") {
+        return await taskController.deactivatelist(request);
     } else if (url.pathname.match("/lists/[0-9]+/items/[0-9]+") && request.method === "POST") {
         return await workEntryController.deleteitem(request);
     } else if (url.pathname.match("/lists/[0-9]+") && request.method === "GET") {

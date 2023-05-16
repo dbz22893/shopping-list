@@ -17,6 +17,10 @@ const findById = async(id) => {
     return { id: 0, name: "Unknown" };
 };
 
+const deactivatelist = async(id) => {
+    return await sql `UPDATE shopping_lists SET active = FALSE WHERE id = ${id}`;
+};
+
 const numberofshoppinglists = async() => {
     const numbers = await sql `SELECT COUNT(*) AS count FROM shopping_lists;`;
     if (numbers && numbers.length > 0) {
@@ -26,4 +30,4 @@ const numberofshoppinglists = async() => {
     return { id: 0, name: "Unknown" };
 };
 
-export { create, findAllShopping_lists, findById, numberofshoppinglists };
+export { create, findAllShopping_lists, findById, deactivatelist, numberofshoppinglists };

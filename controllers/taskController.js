@@ -25,6 +25,14 @@ const viewLists = async(request) => {
     return new Response(await renderFile("lists.eta", data), responseDetails);
 };
 
+const deactivatelist = async(request) => {
+    const url = new URL(request.url);
+    const urlParts = url.pathname.split("/");
+    await taskService.deactivatelist(urlParts[2]);
+    return requestUtils.redirectTo(`/lists`);
+};
+
+
 const showMainpage = async(request) => {
     const data = {
         Lists: "Lists",
@@ -39,4 +47,4 @@ const showMainpage = async(request) => {
 
 
 
-export { addList, viewLists, showMainpage };
+export { addList, viewLists, deactivatelist, showMainpage };
